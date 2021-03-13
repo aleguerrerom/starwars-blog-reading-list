@@ -10,7 +10,7 @@ export const Navbar = () => {
 			<form className="form-inline">
 				<li className="nav-item bg-secondary mb-3">
 					<select className="custom-select badge-dark">
-						<option selected>Open this select menu</option>
+						<option selected>Favorites</option>
 						<option value="1">
 							One <i id="right" className="fas fa-trash-alt" onClick="" />
 						</option>

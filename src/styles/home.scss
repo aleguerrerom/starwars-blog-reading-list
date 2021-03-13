@@ -1,3 +1,4 @@
+
 .testimonial-group > .row {
   display: block;
   overflow-x: auto;
@@ -5,4 +6,9 @@
 }
 .testimonial-group > .row > .col-4 {
   display: inline-block;
+}
+
+h1{
+    color:gray; 
+    padding-left: 10px;
 }
