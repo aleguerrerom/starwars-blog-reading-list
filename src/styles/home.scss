@@ -4,8 +4,9 @@
   overflow-x: auto;
   white-space: nowrap;
 }
-.testimonial-group > .row > .col-4 {
+.testimonial-group > .row > .col-4  > #Card{
   display: inline-block;
+  margin-left: 10px;
 }
 
 h1{

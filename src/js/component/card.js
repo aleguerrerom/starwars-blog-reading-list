@@ -2,7 +2,7 @@ import React from "react";
 import PropType from "prop-types";
 import "../../styles/home.scss";
 export const Cards = props => (
-	<div>
+	<div id="Card">
 		<div className="card my-2">
 			<img className="card-img-top w-100" src={props.image} alt="Card image cap" />
 			<div className="card-body">

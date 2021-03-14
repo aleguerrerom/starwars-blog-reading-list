@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Cards } from "../component/card";
 import "../../styles/home.scss";
 
+//ARRAY VACIO
+const Character = [];
+const Planets = [];
+
+///ARRAY DE PRUEBA
 const CharacterArray = [
 	{
 		cardTitle: "Azoka",
@@ -30,6 +35,15 @@ const CharacterArray = [
 		eye: "Eye-Color: Black",
 		hair: "Hair-Color: N/A",
 		img: "https://starwarsblog.starwars.com/wp-content/uploads/2015/07/EP1_IA_72118-copy-1536x864-433723767381.jpg"
+	},
+	{
+		cardTitle: "R2-D2",
+		buttonLabel: "Learn More",
+		description: "A legendary Sith Master, Darth Maul ",
+		gender: "N/A",
+		eye: "N/A",
+		hair: "N/A",
+		img: "https://lumiere-a.akamaihd.net/v1/images/r2-d2-main_86916bb6.jpeg?region=304%2C0%2C1778%2C1000&width=768"
 	}
 ];
 
@@ -58,8 +72,19 @@ const PlanetsArray = [
 		population: "Population: 900000",
 		terrain: "Terrain: Sand",
 		img: "https://lumiere-a.akamaihd.net/v1/images/Coruscant_03db43b4.jpeg?region=0%2C0%2C1536%2C864&width=768"
+	},
+	{
+		cardTitle: "Death Star",
+		buttonLabel: "Learn More",
+		description: "A legendary Sith Master, Darth Maul ",
+		population: "Population: 900000",
+		terrain: "Terrain: Sand",
+		img:
+			"https://lumiere-a.akamaihd.net/v1/images/Death-Star-I-copy_36ad2500.jpeg?region=0%2C0%2C1600%2C900&width=768"
 	}
 ];
+
+///CARD para Personajes
 const CardCharactersMap = CharacterArray.map((singleCard, i) => {
 	return (
 		<Cards
@@ -78,7 +103,7 @@ const CardCharactersMap = CharacterArray.map((singleCard, i) => {
 const CardCharacterList = () => {
 	return <div className="col-4">{CardCharactersMap}</div>;
 };
-
+///card para Planetas
 const CardPlanetsMap = PlanetsArray.map((singleCard, j) => {
 	return (
 		<Cards
@@ -97,8 +122,9 @@ const CardPlanetsList = () => {
 	return <div className="col-4">{CardPlanetsMap}</div>;
 };
 
-export const Home = () => (
-	<div className="container">
+////////EXPORT HOME
+export function Home() {
+	return (
 		<div className="container">
 			<div>
 				<h1>Characters</h1>
@@ -117,5 +143,5 @@ export const Home = () => (
 				</div>
 			</div>
 		</div>
-	</div>
-);
+	);
+}
