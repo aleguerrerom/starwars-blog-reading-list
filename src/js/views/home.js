@@ -3,9 +3,15 @@ import { Cards } from "../component/card";
 import "../../styles/home.scss";
 
 //ARRAY VACIO
-const Character = [];
+const Character = [
+	{
+		cardTitle: "Azoka",
+		gender: "Gender: Female",
+		eye: "Eye-Color: Green",
+		hair: "Hair-Color: None"
+	}
+];
 const Planets = [];
-
 ///ARRAY DE PRUEBA
 const CharacterArray = [
 	{
@@ -124,6 +130,40 @@ const CardPlanetsList = () => {
 
 ////////EXPORT HOME
 export function Home() {
+	const [inputValue, fnInputValue] = useState("");
+	const [addtoArray, fnAddtoArray] = useState([]);
+	const [List, setList] = useState([]);
+
+	useEffect(() => {
+		BuscarTodoList();
+	}, []);
+
+	async function BuscarTodoList() {
+		let requestOptions = {
+			method: "GET"
+		};
+		for (let i = 1; i < 5; i++) {
+			const response = await fetch("https://swapi.dev/api/people/" + i + "/", requestOptions)
+				.then(res => {
+					return res.json();
+				})
+				.catch(error => console.log("error", error));
+
+			setList({
+				cardTitle: response.name,
+				eye: response.eye_color,
+				gender: response.gender,
+				hair: response.hair_color
+			});
+			Character.push({
+				cardTitle: response.name,
+				eye: response.eye_color,
+				gender: response.gender,
+				hair: response.hair_color
+			});
+		}
+	}
+	console.log(Character);
 	return (
 		<div className="container">
 			<div>
