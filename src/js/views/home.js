@@ -91,7 +91,7 @@ const PlanetsArray = [
 ];
 
 ///CARD para Personajes
-const CardCharactersMap = CharacterArray.map((singleCard, i) => {
+const CardCharactersMap = Character.map((singleCard, i) => {
 	return (
 		<Cards
 			key={i}
