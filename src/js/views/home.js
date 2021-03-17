@@ -2,16 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Cards } from "../component/card";
 import "../../styles/home.scss";
 
-//ARRAY VACIO
-const Character = [
-	{
-		cardTitle: "Azoka",
-		gender: "Gender: Female",
-		eye: "Eye-Color: Green",
-		hair: "Hair-Color: None"
-	}
-];
-const Planets = [];
 ///ARRAY DE PRUEBA
 const CharacterArray = [
 	{
@@ -90,87 +80,48 @@ const PlanetsArray = [
 	}
 ];
 
-///CARD para Personajes
-const CardCharactersMap = Character.map((singleCard, i) => {
-	return (
-		<Cards
-			key={i}
-			title={singleCard.cardTitle}
-			description={singleCard.description}
-			image={singleCard.img}
-			buttonLabel={singleCard.buttonLabel}
-			gender={singleCard.gender}
-			eye={singleCard.eye}
-			hair={singleCard.hair}
-		/>
-	);
-});
-
-const CardCharacterList = () => {
-	return <div className="col-4">{CardCharactersMap}</div>;
-};
-///card para Planetas
-const CardPlanetsMap = PlanetsArray.map((singleCard, j) => {
-	return (
-		<Cards
-			key={j}
-			title={singleCard.cardTitle}
-			description={singleCard.description}
-			image={singleCard.img}
-			buttonLabel={singleCard.buttonLabel}
-			population={singleCard.population}
-			terrain={singleCard.terrain}
-		/>
-	);
-});
-
-const CardPlanetsList = () => {
-	return <div className="col-4">{CardPlanetsMap}</div>;
-};
-
 ////////EXPORT HOME
 export function Home() {
-	const [inputValue, fnInputValue] = useState("");
-	const [addtoArray, fnAddtoArray] = useState([]);
 	const [List, setList] = useState([]);
 
 	useEffect(() => {
-		BuscarTodoList();
+		Buscarplaneta();
+		BuscarCharacter();
 	}, []);
 
-	async function BuscarTodoList() {
-		let requestOptions = {
-			method: "GET"
-		};
-		for (let i = 1; i < 5; i++) {
-			const response = await fetch("https://swapi.dev/api/people/" + i + "/", requestOptions)
-				.then(res => {
-					return res.json();
-				})
-				.catch(error => console.log("error", error));
-
-			setList({
-				cardTitle: response.name,
-				eye: response.eye_color,
-				gender: response.gender,
-				hair: response.hair_color
-			});
-			Character.push({
-				cardTitle: response.name,
-				eye: response.eye_color,
-				gender: response.gender,
-				hair: response.hair_color
-			});
-		}
+	async function BuscarCharacter() {
+		const response = await fetch("https://www.swapi.tech/api/people/")
+			.then(res => {
+				return res.json();
+			})
+			.then(rpt => {
+				setList(rpt.results);
+			})
+			.catch(error => console.log("error", error));
 	}
-	console.log(Character);
+
+	async function Buscarplaneta() {
+		const response = await fetch("https://www.swapi.tech/api/planets/")
+			.then(res => {
+				return res.json();
+			})
+			.then(rpt => {
+				setList(rpt.results);
+			})
+			.catch(error => console.log("error", error));
+	}
+
 	return (
 		<div className="container">
 			<div>
 				<h1>Characters</h1>
 				<div className="container testimonial-group">
 					<div className="row text-center">
-						<CardCharacterList />
+						{List.map((people, i) => (
+							<div className="col-4" key={i}>
+								<Cards PeopleID={people.uid} />
+							</div>
+						))}
 					</div>
 				</div>
 			</div>
@@ -178,7 +129,11 @@ export function Home() {
 				<h1>Planets</h1>
 				<div className="container testimonial-group">
 					<div className="row text-center">
-						<CardPlanetsList />
+						{List.map((planet, j) => (
+							<div className="col-4" key={j}>
+								<Cards test={planet.uid} />
+							</div>
+						))}
 					</div>
 				</div>
 			</div>
