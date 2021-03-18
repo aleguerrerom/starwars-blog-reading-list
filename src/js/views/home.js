@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Cards } from "../component/card";
+import { CardPlanet } from "../component/cardplanet";
 import "../../styles/home.scss";
 
 ///ARRAY DE PRUEBA
@@ -83,7 +84,7 @@ const PlanetsArray = [
 ////////EXPORT HOME
 export function Home() {
 	const [List, setList] = useState([]);
-
+	const [ListPlanet, setListPlanet] = useState([]);
 	useEffect(() => {
 		Buscarplaneta();
 		BuscarCharacter();
@@ -106,7 +107,7 @@ export function Home() {
 				return res.json();
 			})
 			.then(rpt => {
-				setList(rpt.results);
+				setListPlanet(rpt.results);
 			})
 			.catch(error => console.log("error", error));
 	}
@@ -129,9 +130,9 @@ export function Home() {
 				<h1>Planets</h1>
 				<div className="container testimonial-group">
 					<div className="row text-center">
-						{List.map((planet, j) => (
+						{ListPlanet.map((planet, j) => (
 							<div className="col-4" key={j}>
-								<Cards test={planet.uid} />
+								<CardPlanet PlanetID={planet.uid} />
 							</div>
 						))}
 					</div>
