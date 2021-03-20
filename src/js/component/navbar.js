@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import SWIcon from "../../img/starwars.png";
+import { Context } from "../store/appContext";
 export const Navbar = () => {
-	const x = 1;
+	const { store, actions } = useContext(Context);
+
+	const Counter = () => {
+		let x = 0;
+		store.peopleList.forEach(element => {
+			if (element.favorite) {
+				x++;
+			}
+		});
+		store.planetList.forEach(element => {
+			if (element.favorite) {
+				x++;
+			}
+		});
+		return <span className="mr-1 p-1 bg-light text-body rounded">{x}</span>;
+	};
+
 	return (
 		<nav className="navbar navbar-light bg-secondary mb-3">
 			<a className="navbar-brand">
@@ -16,12 +33,24 @@ export const Navbar = () => {
 					data-toggle="dropdown"
 					aria-haspopup="true"
 					aria-expanded="false">
-					Favoritos {x}
+					Favoritos <Counter />
 				</button>
-				<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a className="dropdown-item" href="#">
-						Action <i className="fas fa-trash-alt" />
-					</a>
+				<div className="dropdown-menu dropdown-menu-right" style={{ width: "max-content" }}>
+					{store.peopleList.map((item, i) => {
+						if (item.favorite) {
+							return (
+								<div className="row my-0 ml-0 mr-2">
+									<Link to={"/people/details/" + item.uid} replace>
+										<a className="dropdown-item">{item.name}</a>
+									</Link>
+									<i
+										className="far fa-trash-alt mt-2 ml-auto mr-0"
+										onClick={() => actions.addFavorite(item.uid)}
+									/>
+								</div>
+							);
+						}
+					})}
 				</div>
 			</div>
 		</nav>

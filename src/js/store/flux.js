@@ -1,29 +1,58 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			planetList: [],
+			peopleList: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+			addFavorite: uid => {
+				const store = getStore();
+
+				//we have to loop the entire demo array to look for the respective index
+				//and change its color
+				const newData = store.peopleList.map(item => {
+					if (item.uid === uid) {
+						if (item.favorite) item.favorite = false;
+						else item.favorite = true;
+						return item;
+					} else return item;
+				});
+
+				//reset the global store
+				setStore({ peopleList: newData });
 			},
+			loadSomeData: () => {
+				async function BuscarCharacter() {
+					const response = await fetch("https://www.swapi.tech/api/people/")
+						.then(res => {
+							return res.json();
+						})
+						.then(rpt => {
+							const newData = rpt.results.map(item => ({ ...item, favorite: false }));
+							setStore({ peopleList: newData });
+						})
+						.catch(error => console.log("error", error));
+				}
+
+				async function BuscarPlaneta() {
+					const response = await fetch("https://www.swapi.tech/api/planets/")
+						.then(res => {
+							return res.json();
+						})
+						.then(rpt => {
+							const newData = rpt.results.map(item => ({ ...item, favorite: false }));
+							setStore({ planetList: newData });
+						})
+						.catch(error => console.log("error", error));
+				}
+				BuscarCharacter();
+				BuscarPlaneta();
+			},
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

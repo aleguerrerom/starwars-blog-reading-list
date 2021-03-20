@@ -62,7 +62,11 @@ export const DetailCharacter = props => {
 				<hr className="my-4" />
 				<p>
 					It uses utility classNamees for typography and spacing to space content out within the larger
-					container.
+					container. It uses utility classNamees for typography and spacing to space content out within the
+					larger container. It uses utility classNamees for typography and spacing to space content out within
+					the larger container. It uses utility classNamees for typography and spacing to space content out
+					within the larger container. It uses utility classNamees for typography and spacing to space content
+					out within the larger container.
 				</p>
 				<p className="lead">
 					<table className="table">

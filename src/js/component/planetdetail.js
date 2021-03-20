@@ -23,7 +23,9 @@ let objPlanet = {
 };
 let image = [
 	"",
-	"https://lumiere-a.akamaihd.net/v1/images/tatooine-main_127c43c7.jpeg?region=164%2C0%2C953%2C536&width=768"
+	"https://lumiere-a.akamaihd.net/v1/images/tatooine-main_127c43c7.jpeg?region=164%2C0%2C953%2C536&width=768",
+	"https://lumiere-a.akamaihd.net/v1/images/databank_alderaan_01_169_4a5264e2.jpeg?region=0%2C0%2C1560%2C878&width=768",
+	"https://lumiere-a.akamaihd.net/v1/images/databank_yavin4_01_169_b6945e20.jpeg?region=0%2C0%2C1560%2C878&width=768"
 ];
 
 export const DetailPlanet = props => {
@@ -53,28 +55,32 @@ export const DetailPlanet = props => {
 				<hr className="my-4" />
 				<p>
 					It uses utility classNamees for typography and spacing to space content out within the larger
-					container.
+					container. It uses utility classNamees for typography and spacing to space content out within the
+					larger container. It uses utility classNamees for typography and spacing to space content out within
+					the larger container. It uses utility classNamees for typography and spacing to space content out
+					within the larger container. It uses utility classNamees for typography and spacing to space content
+					out within the larger container.
 				</p>
 				<p className="lead">
 					<table className="table">
 						<thead>
 							<tr>
-								<th scope="col">Name</th>
-								<th scope="col">BirthYear</th>
-								<th scope="col">Gender</th>
-								<th scope="col">Height</th>
-								<th scope="col">Skin Color</th>
-								<th scope="col">Eye Blue</th>
+								<th scope="col">Diamenter</th>
+								<th scope="col">Gravity</th>
+								<th scope="col">Population</th>
+								<th scope="col">Climate</th>
+								<th scope="col">Terrain</th>
+								<th scope="col">Rotation Period</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<th>{planeta.properties.name}</th>
-								<td />
-								<td />
-								<td />
-								<td />
-								<td />
+								<th>{planeta.properties.diameter}</th>
+								<td> {planeta.properties.gravity}</td>
+								<td> {planeta.properties.population}</td>
+								<td> {planeta.properties.climate}</td>
+								<td> {planeta.properties.terrain}</td>
+								<td> {planeta.properties.rotation_period}</td>
 							</tr>
 						</tbody>
 					</table>

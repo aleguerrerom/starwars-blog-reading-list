@@ -8,7 +8,7 @@ import { DetailPlanet } from "../component/planetdetail";
 export const Single = props => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
-	if (params.type === "people") return <DetailCharacter PeopleID={params.theid} />;
+	if (params.type == "people") return <DetailCharacter PeopleID={params.theid} />;
 	else return <DetailPlanet PlanetID={params.theid} />;
 };
 

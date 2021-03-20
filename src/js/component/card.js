@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import PropType from "prop-types";
 import "../../styles/home.scss";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 let objCharacter = {
 	properties: {
@@ -36,7 +37,7 @@ let image = [
 
 export const Cards = props => {
 	const [character, fnCharacter] = useState(objCharacter);
-
+	const { store, actions } = useContext(Context);
 	let detailURL = "people/details/" + props.PeopleID;
 
 	useEffect(() => {
@@ -69,8 +70,19 @@ export const Cards = props => {
 					<Link to={detailURL} href="#" className="btn btn-primary">
 						Learn More
 					</Link>
-					<button type="button" className="btn btn-outline-primary">
-						<i className="far fa-heart" />
+					<button
+						type="button"
+						className="btn btn-outline-primary"
+						onClick={() => actions.addFavorite(props.PeopleID)}>
+						{store.peopleList.map(item => {
+							if (props.PeopleID === item.uid) {
+								if (item.favorite) {
+									return <i className="fas fa-heart" />;
+								} else {
+									return <i className="far fa-heart" />;
+								}
+							}
+						})}
 					</button>
 				</div>
 			</div>
