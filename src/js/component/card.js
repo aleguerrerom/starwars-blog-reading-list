@@ -32,7 +32,11 @@ let image = [
 	"https://lumiere-a.akamaihd.net/v1/images/r2-d2-main_86916bb6.jpeg?region=304%2C0%2C1778%2C1000&width=768",
 	"https://lumiere-a.akamaihd.net/v1/images/Darth-Vader_6bda9114.jpeg?region=0%2C23%2C1400%2C785&width=768",
 	"https://lumiere-a.akamaihd.net/v1/images/leia-organa-feature-image_d0f5e953.jpeg?region=0%2C0%2C1280%2C720&width=768",
-	"https://lumiere-a.akamaihd.net/v1/images/databank_owenlars_01_169_effce0f8.jpeg?region=0%2C0%2C1560%2C878&width=768"
+	"https://lumiere-a.akamaihd.net/v1/images/databank_owenlars_01_169_effce0f8.jpeg?region=0%2C0%2C1560%2C878&width=768",
+	"https://lumiere-a.akamaihd.net/v1/images/databank_berulars_01_169_68101518.jpeg?region=0%2C0%2C1560%2C878&width=768",
+	"https://lumiere-a.akamaihd.net/v1/images/r5-d4_main_image_7d5f078e.jpeg?region=374%2C0%2C1186%2C666&width=768",
+	"https://lumiere-a.akamaihd.net/v1/images/image_606ff7f7.jpeg?region=0%2C0%2C1560%2C878&width=768",
+	"https://lumiere-a.akamaihd.net/v1/images/Obi-Wan-Kenobi_6d775533.jpeg?region=0%2C0%2C1536%2C864&width=768"
 ];
 
 export const Cards = props => {
@@ -58,8 +62,9 @@ export const Cards = props => {
 	return (
 		<div id="Card">
 			<div className="card my-2">
-				<img className="card-img-top w-100" src={image[props.PeopleID]} alt="Card image cap" />
-
+				<Link to={detailURL}>
+					<img className="card-img-top w-100" src={image[props.PeopleID]} alt="Card image cap" />
+				</Link>
 				<div className="card-body">
 					<h5 className="card-title">Name: {character.properties.name}</h5>
 					<p className="card-text">Gender: {character.properties.gender} </p>
