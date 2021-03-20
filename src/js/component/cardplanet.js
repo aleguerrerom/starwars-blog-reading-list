@@ -4,27 +4,24 @@ import "../../styles/home.scss";
 import { Link } from "react-router-dom";
 
 let objPlanet = {
-	message: "ok",
-	result: {
-		properties: {
-			diameter: "10465",
-			rotation_period: "23",
-			orbital_period: "304",
-			gravity: "1 standard",
-			population: "200000",
-			climate: "arid",
-			terrain: "desert",
-			surface_water: "1",
-			created: "2021-03-17T09:16:12.257Z",
-			edited: "2021-03-17T09:16:12.257Z",
-			name: "Tatooine",
-			url: "https://www.swapi.tech/api/planets/1"
-		},
-		description: "A planet.",
-		_id: "5f7254c11b7dfa00041c6fae",
-		uid: "1",
-		__v: 0
-	}
+	properties: {
+		diameter: "10465",
+		rotation_period: "23",
+		orbital_period: "304",
+		gravity: "1 standard",
+		population: "200000",
+		climate: "arid",
+		terrain: "desert",
+		surface_water: "1",
+		created: "2021-03-17T09:16:12.257Z",
+		edited: "2021-03-17T09:16:12.257Z",
+		name: "Tatooine",
+		url: "https://www.swapi.tech/api/planets/1"
+	},
+	description: "A planet.",
+	_id: "5f7254c11b7dfa00041c6fae",
+	uid: "1",
+	__v: 0
 };
 let image = [
 	"",
@@ -33,6 +30,8 @@ let image = [
 
 export const CardPlanet = props => {
 	const [planeta, fnPlaneta] = useState(objPlanet);
+
+	let detailURL = "planets/details/" + props.PlanetID;
 	useEffect(() => {
 		BuscarPlaneta();
 	}, []);
@@ -53,14 +52,14 @@ export const CardPlanet = props => {
 			<div className="card my-2">
 				<img className="card-img-top w-100" src={image[props.PlanetID]} alt="Card image cap" />
 				<div className="card-body">
-					<h5 className="card-title">Name: </h5>
-					<p className="card-text">Gravity: </p>
-					<p className="card-text">Population: </p>
-					<p className="card-text">Climate:</p>
-					<p className="card-text">Diameter: </p>
-					<a href="#" className="btn btn-primary">
+					<h5 className="card-title">Name: {planeta.properties.name}</h5>
+					<p className="card-text">Gravity: {planeta.properties.gravity}</p>
+					<p className="card-text">Population: {planeta.properties.population}</p>
+					<p className="card-text">Climate: {planeta.properties.climate}</p>
+					<p className="card-text">Diameter: {planeta.properties.diameter}</p>
+					<Link to={detailURL} href="#" className="btn btn-primary">
 						Learn More
-					</a>
+					</Link>
 					<button type="button" className="btn btn-outline-primary">
 						<i className="far fa-heart" />
 					</button>
