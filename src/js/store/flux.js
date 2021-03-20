@@ -25,6 +25,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ peopleList: newData });
 			},
+			addFavoritePlanet: uid => {
+				const store = getStore();
+
+				//we have to loop the entire demo array to look for the respective index
+				//and change its color
+				const newData = store.planetList.map(item => {
+					if (item.uid === uid) {
+						if (item.favorite) item.favorite = false;
+						else item.favorite = true;
+						return item;
+					} else return item;
+				});
+
+				//reset the global store
+				setStore({ planetList: newData });
+			},
 			loadSomeData: () => {
 				async function BuscarCharacter() {
 					const response = await fetch("https://www.swapi.tech/api/people/")

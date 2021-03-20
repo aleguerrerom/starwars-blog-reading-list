@@ -23,7 +23,9 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-light bg-secondary mb-3">
 			<a className="navbar-brand">
-				<img src={SWIcon} />
+				<Link to="/">
+					<img src={SWIcon} />
+				</Link>
 			</a>
 			<div className="dropdown">
 				<button
@@ -46,6 +48,22 @@ export const Navbar = () => {
 									<i
 										className="far fa-trash-alt mt-2 ml-auto mr-0"
 										onClick={() => actions.addFavorite(item.uid)}
+									/>
+								</div>
+							);
+						}
+					})}
+
+					{store.planetList.map((item, i) => {
+						if (item.favorite) {
+							return (
+								<div className="row my-0 ml-0 mr-2">
+									<Link to={"/planets/details/" + item.uid} replace>
+										<a className="dropdown-item">{item.name}</a>
+									</Link>
+									<i
+										className="far fa-trash-alt mt-2 ml-auto mr-0"
+										onClick={() => actions.addFavoritePlanet(item.uid)}
 									/>
 								</div>
 							);

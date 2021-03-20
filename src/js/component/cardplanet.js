@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import PropType from "prop-types";
 import "../../styles/home.scss";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 let objPlanet = {
 	properties: {
@@ -32,6 +33,7 @@ let image = [
 
 export const CardPlanet = props => {
 	const [planeta, fnPlaneta] = useState(objPlanet);
+	const { store, actions } = useContext(Context);
 
 	let detailURL = "planets/details/" + props.PlanetID;
 	useEffect(() => {
@@ -62,8 +64,19 @@ export const CardPlanet = props => {
 					<Link to={detailURL} href="#" className="btn btn-primary">
 						Learn More
 					</Link>
-					<button type="button" className="btn btn-outline-primary">
-						<i className="far fa-heart" />
+					<button
+						type="button"
+						className="btn btn-outline-primary"
+						onClick={() => actions.addFavoritePlanet(props.PlanetID)}>
+						{store.planetList.map(item => {
+							if (props.PlanetID === item.uid) {
+								if (item.favorite) {
+									return <i className="fas fa-heart" />;
+								} else {
+									return <i className="far fa-heart" />;
+								}
+							}
+						})}
 					</button>
 				</div>
 			</div>
