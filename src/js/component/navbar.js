@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import SWIcon from "../../img/starwars.png";
 import { Context } from "../store/appContext";
+import "../../styles/home.scss";
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 
@@ -25,6 +26,16 @@ export const Navbar = () => {
 			<a className="navbar-brand">
 				<Link to="/">
 					<img src={SWIcon} />
+				</Link>
+			</a>
+			<a className="navbar-brand">
+				<Link to="/demo">
+					<h4 id="dark">Characters</h4>
+				</Link>
+			</a>
+			<a className="navbar-brand">
+				<Link to="/demo">
+					<h4 id="dark">Planets</h4>
 				</Link>
 			</a>
 			<div className="dropdown">

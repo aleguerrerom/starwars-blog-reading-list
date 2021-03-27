@@ -3,6 +3,7 @@ import { Cards } from "../component/card";
 import { CardPlanet } from "../component/cardplanet";
 import "../../styles/home.scss";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 ////////EXPORT HOME
 export function Home() {
@@ -10,7 +11,9 @@ export function Home() {
 	return (
 		<div className="container">
 			<div>
-				<h1>Characters</h1>
+				<Link to="/demo">
+					<h1>Characters</h1>
+				</Link>
 				<div className="container testimonial-group">
 					<div className="row text-center">
 						{store.peopleList.map((people, i) => (
